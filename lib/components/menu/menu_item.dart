@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gsheet_app/components/sprite_icon.dart';
 import 'dart:math';
+import 'package:gsheet_app/constants.dart' as Constants;
 
 class MenuButton extends StatefulWidget {
   const MenuButton({
@@ -82,32 +83,104 @@ class _MenuButtonState extends State<MenuButton> {
             Positioned(
                 top: _buttonPosition.dy + _buttonSize.height,
                 left: _buttonPosition.dx,
-                height: size.height - _buttonPosition.dy - _buttonSize.height,
-                width: 300,
-                child: Column(
-                  children: [
-                    Material(
-                        elevation: 2,
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: widget.children,
-                          ),
-                        )),
-                    SizedBox(
-                      height: 2,
-                    ),
-                    Expanded(
-                        child: GestureDetector(
-                            onTap: () {
-                              onClose();
-                            },
-                            child: Container(color: Colors.pink)))
-                  ],
+                child: Container(
+                  constraints: BoxConstraints.expand(
+                    height:
+                        size.height - _buttonPosition.dy - _buttonSize.height,
+                    width: 300,
+                  ),
+                  child: Column(
+                    children: [
+                      Material(
+                          elevation: 2,
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: widget.children
+                                  .map((e) => Flexible(flex: 1, child: e))
+                                  .toList(),
+                            ),
+                          )),
+                      SizedBox(
+                        height: 2,
+                      ),
+                      Expanded(
+                          child: GestureDetector(
+                              onTap: () {
+                                onClose();
+                              },
+                              child: Container(color: Colors.transparent)))
+                    ],
+                  ),
                 )),
           ],
         );
       },
+    );
+  }
+}
+
+class MenuItem extends StatelessWidget {
+  final Widget icon;
+  final Widget title;
+  final Widget shortcut;
+  final List<MenuItem> subMenuItems;
+
+  static const TextStyle shortcutTextStyle =
+      const TextStyle(fontSize: 18, color: Constants.SHORTCUT_COLOR);
+
+  const MenuItem(
+      {Key key,
+      this.icon,
+      this.title,
+      this.shortcut,
+      this.subMenuItems = const []})
+      : super(key: key);
+
+  factory MenuItem.shortcut(
+      {Key key, Widget icon, Widget title, String shortcut}) {
+    return MenuItem(
+      key: key,
+      icon: icon,
+      title: title,
+      shortcut: Text(
+        shortcut,
+        style: shortcutTextStyle,
+      ),
+    );
+  }
+
+  factory MenuItem.subMenu(
+      {Key key, Widget icon, Widget title, List<MenuItem> subMenuItems}) {
+    return MenuItem(
+      key: key,
+      icon: icon,
+      title: title,
+      subMenuItems: subMenuItems,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      hoverColor: Constants.MENU_FOCUS_COLOR,
+      onTap: () {},
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+          Expanded(
+            flex: 1,
+            child: SizedBox(height: 18, width: 18, child: icon),
+          ),
+          Expanded(flex: 5, child: title),
+          Expanded(
+              flex: 1,
+              child: shortcut ??
+                  (subMenuItems.isEmpty
+                      ? Container()
+                      : Icon(Icons.arrow_right)))
+        ]),
+      ),
     );
   }
 }

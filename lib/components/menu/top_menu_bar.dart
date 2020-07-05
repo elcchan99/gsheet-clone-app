@@ -9,101 +9,78 @@ class TopMenuBar extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
-  final TextStyle shorcutTextStyle =
-      const TextStyle(fontSize: 18, color: Constants.SHORTCUT_COLOR);
-
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
       MenuButton(key: LabeledGlobalKey("File"), title: Text("File"), children: [
-        ListTile(
-          dense: true,
+        MenuItem(
           title: Text("Share"),
         ),
         MenuItemDivider(),
-        ListTile(
-          dense: true,
+        MenuItem.subMenu(
           title: Text("New"),
-          trailing: Icon(Icons.arrow_right),
+          subMenuItems: [MenuItem()],
         ),
-        ListTile(
-            dense: true,
-            title: Text("New"),
-            trailing: Text(
-              "⌘O",
-              style: shorcutTextStyle,
-            )),
-        ListTile(
-          dense: true,
+        MenuItem.shortcut(
+          title: Text("New"),
+          shortcut: "⌘O",
+        ),
+        MenuItem(
           title: Text("Import"),
         ),
-        ListTile(
-          dense: true,
+        MenuItem(
           title: Text("Make a copy"),
         ),
         MenuItemDivider(),
-        ListTile(
-          dense: true,
+        MenuItem.subMenu(
           title: Text("Download"),
-          trailing: Icon(Icons.arrow_right),
+          subMenuItems: [MenuItem()],
         ),
-        ListTile(
-          dense: true,
+        MenuItem(
           title: Text("Email as attachment"),
         ),
-        ListTile(
-          dense: true,
+        MenuItem(
           title: Text("Make available office"),
         ),
-        ListTile(
-          dense: true,
+        MenuItem.subMenu(
           title: Text("Version history"),
-          trailing: Icon(Icons.arrow_right),
+          subMenuItems: [MenuItem()],
         ),
         MenuItemDivider(),
-        ListTile(
-          dense: true,
+        MenuItem(
           title: Text("Rename"),
         ),
-        // ListTile(
-        //   dense: true,
-        //   leading: SpriteIcon(icon: SpriteIcons.FOLDER_MOVE),
-        //   title: Text("Move"),
-        // ),
-        // ListTile(
-        //   dense: true,
-        //   leading: SpriteIcon(icon: SpriteIcons.ADD_TO_DRIVE),
-        //   title: Text("Add shortcut to Drive"),
-        // ),
-        // ListTile(
-        //   dense: true,
-        //   leading: SpriteIcon(icon: SpriteIcons.TRASH),
-        //   title: Text("Move to trash"),
-        // ),
-        // MenuItemDivider(),
-        // ListTile(
-        //   dense: true,
-        //   title: Text("Publish to the web"),
-        // ),
-        // ListTile(
-        //   dense: true,
-        //   title: Text("Email collaborators"),
-        // ),
-        // MenuItemDivider(),
-        // ListTile(
-        //   dense: true,
-        //   title: Text("Document details"),
-        // ),
-        // ListTile(
-        //   dense: true,
-        //   title: Text("Spreadsheet settings"),
-        // ),
-        // ListTile(
-        //   dense: true,
-        //   leading: SpriteIcon(icon: SpriteIcons.PRINT),
-        //   title: Text("Print"),
-        //   trailing: Text("⌘P", style: shorcutTextStyle),
-        // ),
+        MenuItem(
+          icon: SpriteIcon(icon: SpriteIcons.FOLDER_MOVE),
+          title: Text("Move"),
+        ),
+        MenuItem(
+          icon: SpriteIcon(icon: SpriteIcons.ADD_TO_DRIVE),
+          title: Text("Add shortcut to Drive"),
+        ),
+        MenuItem(
+          icon: SpriteIcon(icon: SpriteIcons.TRASH),
+          title: Text("Move to trash"),
+        ),
+        MenuItemDivider(),
+        MenuItem(
+          title: Text("Publish to the web"),
+        ),
+        MenuItem(
+          title: Text("Email collaborators"),
+        ),
+        MenuItemDivider(),
+        MenuItem(
+          title: Text("Document details"),
+        ),
+        MenuItem(
+          title: Text("Spreadsheet settings"),
+        ),
+        MenuItem.shortcut(
+          icon: SpriteIcon(icon: SpriteIcons.PRINT),
+          title: Text("Print"),
+          shortcut: "⌘P",
+        ),
       ]),
       MenuButton(
         key: LabeledGlobalKey("Edit"),
