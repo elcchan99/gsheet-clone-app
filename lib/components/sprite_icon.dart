@@ -55,6 +55,13 @@ class SpriteIcons {
       height: 18, width: 18, offsetX: -20, offsetY: -1938);
   static const REDO = SpriteIconMetaData(SPRITE_SHEET_1,
       height: 18, width: 18, offsetX: 0, offsetY: -960);
+  static const CUT = SpriteIconMetaData(SPRITE_SHEET_1,
+      height: 18, width: 18, offsetX: -40, offsetY: -3320);
+  static const COPY = SpriteIconMetaData(SPRITE_SHEET_1,
+      height: 18, width: 18, offsetX: 0, offsetY: -2962);
+  static const PASTE = SpriteIconMetaData(SPRITE_SHEET_1,
+      height: 18, width: 18, offsetX: -0, offsetY: -226);
+
   static const PRINT = SpriteIconMetaData(SPRITE_SHEET_1,
       height: 18, width: 18, offsetX: -20, offsetY: -3260);
   static const PAINT = SpriteIconMetaData(SPRITE_SHEET_1,

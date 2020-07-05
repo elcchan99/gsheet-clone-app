@@ -51,15 +51,15 @@ class TopMenuBar extends StatelessWidget {
           title: Text("Rename"),
         ),
         MenuItem(
-          icon: SpriteIcon(icon: SpriteIcons.FOLDER_MOVE),
+          icon: const SpriteIcon(icon: SpriteIcons.FOLDER_MOVE),
           title: Text("Move"),
         ),
         MenuItem(
-          icon: SpriteIcon(icon: SpriteIcons.ADD_TO_DRIVE),
+          icon: const SpriteIcon(icon: SpriteIcons.ADD_TO_DRIVE),
           title: Text("Add shortcut to Drive"),
         ),
         MenuItem(
-          icon: SpriteIcon(icon: SpriteIcons.TRASH),
+          icon: const SpriteIcon(icon: SpriteIcons.TRASH),
           title: Text("Move to trash"),
         ),
         MenuItemDivider(),
@@ -77,7 +77,7 @@ class TopMenuBar extends StatelessWidget {
           title: Text("Spreadsheet settings"),
         ),
         MenuItem.shortcut(
-          icon: SpriteIcon(icon: SpriteIcons.PRINT),
+          icon: const SpriteIcon(icon: SpriteIcons.PRINT),
           title: Text("Print"),
           shortcut: "⌘P",
         ),
@@ -86,9 +86,37 @@ class TopMenuBar extends StatelessWidget {
         key: LabeledGlobalKey("Edit"),
         title: Text("Edit"),
         children: [
-          MenuItem(
-            title: Text("A"),
+          MenuItem.shortcut(
+            icon: const SpriteIcon(icon: SpriteIcons.UNDO),
+            title: Text("Undo"),
+            shortcut: "⌘Z",
           ),
+          MenuItem.shortcut(
+            icon: const SpriteIcon(icon: SpriteIcons.REDO),
+            title: Text("Redo"),
+            shortcut: "⌘Y",
+          ),
+          MenuItemDivider(),
+          MenuItem.shortcut(
+            icon: const SpriteIcon(icon: SpriteIcons.CUT),
+            title: Text("Cut"),
+            shortcut: "⌘X",
+          ),
+          MenuItem.shortcut(
+            icon: const SpriteIcon(icon: SpriteIcons.COPY),
+            title: Text("Copy"),
+            shortcut: "⌘C",
+          ),
+          MenuItem.shortcut(
+            icon: const SpriteIcon(icon: SpriteIcons.PASTE),
+            title: Text("Paste"),
+            shortcut: "⌘V",
+          ),
+          MenuItem.subMenu(
+            title: Text("Paste Special"),
+            subMenuItems: [MenuItem()],
+          ),
+          MenuItemDivider(),
         ],
       ),
       MenuButton(

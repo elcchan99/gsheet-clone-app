@@ -54,9 +54,16 @@ class _MenuButtonState extends State<MenuButton> {
       child: RawMaterialButton(
         constraints: BoxConstraints(),
         padding: EdgeInsets.symmetric(vertical: 4, horizontal: 6),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         elevation: 0,
+        disabledElevation: 0,
+        highlightElevation: 0,
+        hoverElevation: 0,
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         child: widget.title,
+        hoverColor: Constants.MENU_HOVER_COLOR,
+        fillColor: isActive ? Constants.MENU_ACTIVE_COLOR : null,
+        focusColor: isActive ? Constants.MENU_FOCUS_COLOR : null,
         onPressed: () {
           isActive ? onClose() : onOpen();
         },
@@ -83,32 +90,29 @@ class _MenuButtonState extends State<MenuButton> {
             Positioned(
                 top: _buttonPosition.dy + _buttonSize.height,
                 left: _buttonPosition.dx,
-                child: Container(
-                  constraints: BoxConstraints.expand(
-                    height:
-                        size.height - _buttonPosition.dy - _buttonSize.height,
-                    width: 300,
-                  ),
-                  child: Column(
+                child: LimitedBox(
+                  maxHeight:
+                      size.height - _buttonPosition.dy - _buttonSize.height,
+                  maxWidth: size.width - _buttonPosition.dx,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Material(
-                          elevation: 2,
-                          child: SingleChildScrollView(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: widget.children
-                                  .map((e) => Flexible(flex: 1, child: e))
-                                  .toList(),
-                            ),
-                          )),
-                      SizedBox(
-                        height: 2,
+                      Flexible(
+                        child: Material(
+                            elevation: 2,
+                            child: SingleChildScrollView(
+                              physics: ClampingScrollPhysics(),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: widget.children
+                                    .map((e) => Flexible(flex: 1, child: e))
+                                    .toList(),
+                              ),
+                            )),
                       ),
                       Expanded(
                           child: GestureDetector(
-                              onTap: () {
-                                onClose();
-                              },
+                              onTap: onClose,
                               child: Container(color: Colors.transparent)))
                     ],
                   ),
@@ -163,7 +167,7 @@ class MenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      hoverColor: Constants.MENU_FOCUS_COLOR,
+      hoverColor: Constants.MENU_HOVER_COLOR,
       onTap: () {},
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -178,7 +182,8 @@ class MenuItem extends StatelessWidget {
               child: shortcut ??
                   (subMenuItems.isEmpty
                       ? Container()
-                      : Icon(Icons.arrow_right)))
+                      : Icon(Icons.arrow_right))),
+          Container()
         ]),
       ),
     );
