@@ -86,8 +86,7 @@ class TopMenuBar extends StatelessWidget {
         key: LabeledGlobalKey("Edit"),
         title: Text("Edit"),
         children: [
-          ListTile(
-            dense: true,
+          MenuItem(
             title: Text("A"),
           ),
         ],
@@ -96,8 +95,7 @@ class TopMenuBar extends StatelessWidget {
         key: LabeledGlobalKey("View"),
         title: Text("View"),
         children: [
-          ListTile(
-            dense: true,
+          MenuItem(
             title: Text("A"),
           ),
         ],
@@ -106,8 +104,7 @@ class TopMenuBar extends StatelessWidget {
         key: LabeledGlobalKey("Insert"),
         title: Text("Insert"),
         children: [
-          ListTile(
-            dense: true,
+          MenuItem(
             title: Text("A"),
           ),
         ],
@@ -116,8 +113,7 @@ class TopMenuBar extends StatelessWidget {
         key: LabeledGlobalKey("Format"),
         title: Text("Format"),
         children: [
-          ListTile(
-            dense: true,
+          MenuItem(
             title: Text("A"),
           ),
         ],
@@ -126,8 +122,7 @@ class TopMenuBar extends StatelessWidget {
         key: LabeledGlobalKey("Data"),
         title: Text("Data"),
         children: [
-          ListTile(
-            dense: true,
+          MenuItem(
             title: Text("A"),
           ),
         ],
@@ -136,8 +131,7 @@ class TopMenuBar extends StatelessWidget {
         key: LabeledGlobalKey("Tools"),
         title: Text("Tools"),
         children: [
-          ListTile(
-            dense: true,
+          MenuItem(
             title: Text("A"),
           ),
         ],
@@ -146,8 +140,7 @@ class TopMenuBar extends StatelessWidget {
         key: LabeledGlobalKey("ons"),
         title: Text("Add-ons"),
         children: [
-          ListTile(
-            dense: true,
+          MenuItem(
             title: Text("A"),
           ),
         ],
@@ -156,8 +149,7 @@ class TopMenuBar extends StatelessWidget {
         key: LabeledGlobalKey("Help"),
         title: Text("Help"),
         children: [
-          ListTile(
-            dense: true,
+          MenuItem(
             title: Text("A"),
           ),
         ],
