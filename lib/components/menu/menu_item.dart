@@ -5,12 +5,10 @@ import 'dart:math';
 class MenuButton extends StatefulWidget {
   const MenuButton({
     GlobalKey key,
-    this.isActive = false,
     this.title,
     this.children,
   }) : super(key: key);
 
-  final bool isActive;
   final Widget title;
   final List<Widget> children;
 
@@ -23,24 +21,15 @@ class _MenuButtonState extends State<MenuButton> {
     return widget.key as GlobalKey;
   }
 
-  bool isActive;
-  double _height, _width;
-  double _xPosition, _yPosition;
+  bool isActive = false;
+  Size _buttonSize;
+  Offset _buttonPosition;
   OverlayEntry _dropDownMenu;
-
-  @override
-  void initState() {
-    isActive = widget.isActive;
-    super.initState();
-  }
 
   void onOpen() {
     RenderBox renderBox = actionKey.currentState.context.findRenderObject();
-    _height = renderBox.size.height;
-    _width = renderBox.size.width;
-    Offset offset = renderBox.localToGlobal(Offset.zero);
-    _xPosition = offset.dx;
-    _yPosition = offset.dy;
+    _buttonSize = renderBox.size;
+    _buttonPosition = renderBox.localToGlobal(Offset.zero);
 
     _dropDownMenu = _buildDropDownMenu();
     Overlay.of(context).insert(_dropDownMenu);
@@ -91,9 +80,9 @@ class _MenuButtonState extends State<MenuButton> {
               ),
             ),
             Positioned(
-                top: _yPosition + _height,
-                left: _xPosition,
-                height: size.height - _yPosition - _height,
+                top: _buttonPosition.dy + _buttonSize.height,
+                left: _buttonPosition.dx,
+                height: size.height - _buttonPosition.dy - _buttonSize.height,
                 width: 300,
                 child: Column(
                   children: [
