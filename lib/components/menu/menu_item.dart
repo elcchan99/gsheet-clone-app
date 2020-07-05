@@ -98,16 +98,14 @@ class _MenuButtonState extends State<MenuButton> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Flexible(
+                        fit: FlexFit.tight,
                         child: Material(
                             elevation: 2,
                             child: SingleChildScrollView(
                               physics: ClampingScrollPhysics(),
                               child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: widget.children
-                                    .map((e) => Flexible(flex: 1, child: e))
-                                    .toList(),
-                              ),
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: widget.children),
                             )),
                       ),
                       Expanded(
